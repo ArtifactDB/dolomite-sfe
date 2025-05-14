@@ -1,0 +1,37 @@
+dolomite\_sfe package
+=====================
+
+Submodules
+----------
+
+dolomite\_sfe.read\_sfe\_images module
+--------------------------------------
+
+.. automodule:: dolomite_sfe.read_sfe_images
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+dolomite\_sfe.read\_spatial\_feature\_experiment module
+-------------------------------------------------------
+
+.. automodule:: dolomite_sfe.read_spatial_feature_experiment
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+dolomite\_sfe.save\_spatial\_feature\_experiment module
+-------------------------------------------------------
+
+.. automodule:: dolomite_sfe.save_spatial_feature_experiment
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: dolomite_sfe
+   :members:
+   :show-inheritance:
+   :undoc-members:
