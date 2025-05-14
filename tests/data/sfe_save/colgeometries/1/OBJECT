@@ -1,0 +1,7 @@
+{
+    "simple_feature": {
+        "version": "1.0",
+        "dimensions": [6272, 3]
+    },
+    "type": "simple_feature"
+}

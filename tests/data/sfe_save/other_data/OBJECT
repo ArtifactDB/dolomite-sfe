@@ -1,0 +1,7 @@
+{
+    "simple_list": {
+        "version": "1.0",
+        "format": "json.gz"
+    },
+    "type": "simple_list"
+}
