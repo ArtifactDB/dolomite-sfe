@@ -52,3 +52,7 @@ MANIFEST
 .venv*/
 .conda*/
 .python-version
+
+# dolomite files
+tests/data/xenium2/*
+tests/data/sfe_save/
