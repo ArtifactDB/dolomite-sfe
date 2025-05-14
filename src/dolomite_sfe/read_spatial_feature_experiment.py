@@ -3,6 +3,7 @@ import os
 
 import dolomite_base as dl
 import dolomite_spatial as dlspatial
+import geopandas as gpd
 import libpysal
 import numpy as np
 from dolomite_base.read_object import read_object_registry
@@ -10,6 +11,45 @@ from scipy import sparse as sp
 from spatialfeatureexperiment import SpatialFeatureExperiment
 
 read_object_registry["spatial_feature_experiment"] = "dolomite_sfe.read_spatial_feature_experiment"
+read_object_registry["simple_feature"] = "dolomite_sfe.read_simple_feature"
+
+
+def read_simple_feature(path: str, metadata: dict, **kwargs) -> gpd.GeoDataFrame:
+    """Load a :py:class:`~geopandas.GeoDataFrame` from its on-disk representation.
+
+    This method should generally not be called directly but instead be invoked by
+    :py:meth:`~dolomite_base.read_object.read_object`.
+
+    Args:
+        path:
+            Path to the directory containing the object.
+
+        metadata:
+            Metadata for the object.
+
+        kwargs:
+            Further arguments.
+
+    Returns:
+        A :py:class:`~geopandas.GeoDataFrame` object containing the coordinates.
+    """
+    parquet_path = os.path.join(path, "map.parquet")
+    gpdf = gpd.read_parquet(parquet_path)
+
+    if "rownames" in gpdf.columns:
+        gpdf = gpdf.set_index("rownames")
+
+    fd_path = os.path.join(path, "feature_data")
+    if os.path.isdir(fd_path):
+        fd = dl.alt_read_object(fd_path, **kwargs)
+        gpdf.attrs["featureData"] = fd
+
+    param_path = os.path.join(path, "params")
+    if os.path.isdir(param_path):
+        params = dl.alt_read_object(param_path, **kwargs)
+        gpdf.attrs["params"] = params
+
+    return gpdf
 
 
 def read_geometries(path: str, geom_type: str = None):
@@ -85,11 +125,11 @@ def read_graphs(path: str):
                     if not isinstance(matrix, sp.csr_matrix):
                         matrix = sp.csr_matrix(matrix)
 
-                    m = libpysal.mat2listw(
-                        matrix, style=method["args"]["style"], zero_policy=method["args"]["zero_policy"]
-                    )
-                    m.method = method
-                    gs[graph_name] = m
+                    print(method, matrix)
+
+                    _graph = libpysal.graph.Graph.from_sparse(matrix)
+                    print(_graph)
+                    gs[graph_name] = _graph
 
                 mlist[m] = gs
 
@@ -182,18 +222,18 @@ def read_spatial_feature_experiment(path: str, metadata: dict, **kwargs) -> Spat
         :py:class:`~spatialexperiment.SpatialExperiment.SpatialExperiment`
         with file-backed arrays in the assays.
     """
-    sce = dlspatial.read_spatial_experiment(path, metadata=metadata, **kwargs)
+    print(path, metadata, kwargs)
+    spexp = dlspatial.read_spatial_experiment(path, metadata=metadata, **kwargs)
 
-    # TODO: needs SPE to SFE coercion
-    spe = SpatialFeatureExperiment(
-        assays=sce.get_assays(),
-        row_data=sce.get_row_data(),
-        column_data=sce.get_column_data(),
-        row_ranges=sce.get_row_ranges(),
-        metadata=sce.get_metadata(),
-        main_experiment_name=sce.get_main_experiment_name(),
-        reduced_dims=sce.get_reduced_dims(),
-        alternative_experiments=sce.get_alternative_experiments(),
+    print(spexp)
+    print(spexp.get_image_data())
+
+    spe = SpatialFeatureExperiment.from_spatial_experiment(
+        spexp,
+        row_geometries=read_geometries(path, "row"),
+        column_geometries=read_geometries(path, "col"),
+        annotation_geometries=read_geometries(path, "annot"),
+        spatial_graphs=read_graphs(path),
     )
 
     return spe

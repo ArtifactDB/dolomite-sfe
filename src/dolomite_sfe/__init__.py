@@ -14,3 +14,6 @@ except PackageNotFoundError:  # pragma: no cover
     __version__ = "unknown"
 finally:
     del version, PackageNotFoundError
+
+from .read_sfe_images import read_bio_infomats_image, read_ext_image, read_spat_raster_image
+from .read_spatial_feature_experiment import read_simple_feature, read_spatial_feature_experiment
