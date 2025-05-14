@@ -1,11 +1,12 @@
 [![PyPI-Server](https://img.shields.io/pypi/v/dolomite-sfe.svg)](https://pypi.org/project/dolomite-sfe/)
-![Unit tests](https://github.com/BiocPy/dolomite-sfe/actions/workflows/pypi-test.yml/badge.svg)
+![Unit tests](https://github.com/ArtifactDB/dolomite-sfe/actions/workflows/pypi-test.yml/badge.svg)
 
-# dolomite-sfe
+# Save and write `SpatialFeatureExperiment`'s in Python
 
-> Add a short description here!
+## Introduction
 
-A longer description of your project goes here...
+The **dolomite-sfe** package is the Python counterpart to the [**alabaster.sfe**](https://github.com/pachterlab/alabaster.sfe) R package,
+providing methods for saving/reading `SpatialFeatureExperiment` objects within the [**dolomite** framework](https://github.com/ArtifactDB/dolomite-base).
 
 ## Install
 

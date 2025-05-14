@@ -1,0 +1,23 @@
+{
+    "summarized_experiment": {
+        "version": "1.0",
+        "dimensions": [
+            398,
+            6272
+        ]
+    },
+    "type": "spatial_feature_experiment",
+    "ranged_summarized_experiment": {
+        "version": "1.0"
+    },
+    "single_cell_experiment": {
+        "version": "1.0"
+    },
+    "spatial_experiment": {
+        "version": "1.2"
+    },
+    "spatial_feature_experiment": {
+        "version": "1.10.1",
+        "unit": "micron"
+    }
+}
