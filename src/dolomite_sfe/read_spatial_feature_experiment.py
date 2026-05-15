@@ -125,10 +125,7 @@ def read_graphs(path: str):
                     if not isinstance(matrix, sp.csr_matrix):
                         matrix = sp.csr_matrix(matrix)
 
-                    print(method, matrix)
-
                     _graph = libpysal.graph.Graph.from_sparse(matrix)
-                    print(_graph)
                     gs[graph_name] = _graph
 
                 mlist[m] = gs
@@ -222,11 +219,7 @@ def read_spatial_feature_experiment(path: str, metadata: dict, **kwargs) -> Spat
         :py:class:`~spatialexperiment.SpatialExperiment.SpatialExperiment`
         with file-backed arrays in the assays.
     """
-    print(path, metadata, kwargs)
     spexp = dlspatial.read_spatial_experiment(path, metadata=metadata, **kwargs)
-
-    print(spexp)
-    print(spexp.get_image_data())
 
     spe = SpatialFeatureExperiment.from_spatial_experiment(
         spexp,
