@@ -1,18 +1,7 @@
 # dolomite-sfe
 
-Add a short description here!
-
-
-## Note
-
-> This is the main page of your project's [Sphinx] documentation. It is
-> formatted in [Markdown]. Add additional pages by creating md-files in
-> `docs` or rst-files (formatted in [reStructuredText]) and adding links to
-> them in the `Contents` section below.
->
-> Please check [Sphinx] and [MyST] for more information
-> about how to document your project and how to configure your preferences.
-
+The **dolomite-sfe** package is the Python counterpart to the [**alabaster.sfe**](https://github.com/pachterlab/alabaster.sfe) R package,
+providing methods for saving/reading `SpatialFeatureExperiment` objects within the [**dolomite** framework](https://github.com/ArtifactDB/dolomite-base).
 
 ## Contents
 
