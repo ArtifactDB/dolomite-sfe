@@ -8,6 +8,9 @@
 The **dolomite-sfe** package is the Python counterpart to the [**alabaster.sfe**](https://github.com/pachterlab/alabaster.sfe) R package,
 providing methods for saving/reading `SpatialFeatureExperiment` objects within the [**dolomite** framework](https://github.com/ArtifactDB/dolomite-base).
 
+> [!NOTE]
+> This package currently only supports reading of SFE objects from the alabaster format.
+
 ## Install
 
 To get started, install the package from [PyPI](https://pypi.org/project/dolomite-sfe/)
